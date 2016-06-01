@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.views import generic
 
-from .models import Choice, Question, Person
+from .models import Choice, Question, Person, totalNumberOfVotes
 
 
 class IndexView(generic.ListView):
@@ -19,7 +19,7 @@ class IndexView(generic.ListView):
 				'voter' : per,
 				'latest_question_list' : Question.objects.all()
 				})			
-		return HttpResponse("Invalid Code")
+		return render(request , 'polls/results.html' , {'text' : "This seems odd, the link is broken."})
 		
 		
 
@@ -48,9 +48,13 @@ def vote(request,voter_id):
 				# user hits the Back button.
 		person.voted = True
 		person.save()
-		return HttpResponse("Thanks for voting")
+		tempT = totalNumberOfVotes.objects.all()[0]
+		tempT.number+=1
+		tempT.save()
+		
+		return render(request , 'polls/results.html' , {'text' : "Thanks for voting in ISA Elections 2016-17"})
 	else:
-		return HttpResponse("You have already voted")
+		return render(request , 'polls/results.html' , {'text' : "You have already voted"})
 	
 		
 	

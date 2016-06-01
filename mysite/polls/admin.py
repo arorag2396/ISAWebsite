@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Choice, Question, Person
+from .models import Choice, Question, Person, totalNumberOfVotes
 
 
 class ChoiceInline(admin.TabularInline):
@@ -15,6 +15,10 @@ class QuestionAdmin(admin.ModelAdmin):
         ('Date information', {'fields': ['pub_date'], 'classes': ['collapse']}),
     ]
     inlines = [ChoiceInline]
+	
+
+	
 
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Person)
+admin.site.register(totalNumberOfVotes)

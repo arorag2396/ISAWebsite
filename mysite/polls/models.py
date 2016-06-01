@@ -30,4 +30,7 @@ class Person(models.Model):
 		return self.name
 	def votingCompleted(self):
 		voted = True
-		
+
+class totalNumberOfVotes(models.Model):
+	number = models.IntegerField(default=0)
+	
