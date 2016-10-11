@@ -123,7 +123,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.usask.ca'
-EMAIL_HOST_USER = 'gaa721'
-EMAIL_HOST_PASSWORD = '8010Water8810'
+EMAIL_HOST = 'your host'
+EMAIL_HOST_USER = 'your email'
+EMAIL_HOST_PASSWORD = 'your password'
 EMAIL_PORT = 587
