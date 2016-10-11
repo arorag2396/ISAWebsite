@@ -5,16 +5,16 @@
 
  <div class="w3-container w3-teal w3-text-white-opacity w3-animate-top">
             <h1>ISA Elections</h1>
-            <h3>Hello {{ voter.name }} in ISA  Election 2016-2017</h3>
+            <h3>Hello {{ voter.name }}<br>Welcome to the elections for 2016-17 ISA committee. We ask the ballots to be filled out by checking the YES box for the candidate you wish to vote for, NO box for candidate you do not wish for, or ABSTAIN box to refrain from voting for that position.</h3>
 </div>
-		
- 
 
-		
+
+
+
 {% if latest_question_list %}
 <form action="{% url 'polls:vote' voter.uniqueCode %}" method="post">
-   
-	
+
+
     {% for question in latest_question_list %}
 	{% csrf_token %}
 <div class="w3-card-2" >
@@ -22,13 +22,13 @@
 <h2>{{ question.question_text }}</h2>
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 {% for choice in question.choice_set.all %}
-   <input type="radio" name="choice{{question.id}}" id="choice{{ forloop.counter }}" value="{{ choice.id }}" required />
-    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+   <input type="radio" name="choice{{question.id}}" id="{{ choice.id }}" value="{{ choice.id }}" required />
+    <label for="{{ choice.id }}">{{ choice.choice_text }}</label><br />
 {% endfor %}
 	</div>
 {% endfor %}
 	<input class="w3-btn w3-green w3-ripple" type="submit" value="Vote" />
-</form>	
+</form>
 {% else %}
     <p>No polls are available.</p>
 {% endif %}
