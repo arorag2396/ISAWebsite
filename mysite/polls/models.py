@@ -39,17 +39,21 @@ class Choice(models.Model):
 	votes = models.IntegerField(default=0)
 	def __str__(self):
 		return self.choice_text
-
+def random_string():
+	import random
+	return str(random.randint(10000000, 999999999))
 
 
 class Person(models.Model):
 	name = models.CharField(max_length=200)
 	email = models. EmailField()
-	uniqueCode = models.CharField(max_length=100,unique=True)
+	uniqueCode = models.CharField(max_length=100,unique=True, default= random_string )
 	voted = models.NullBooleanField()
 	currentCondition = models.CharField(max_length=100,default='Not Touched')
+
 	def __str__(self):
 		return self.name
+
 	def votingCompleted(self):
 		self.voted = True
 		self.currentCondition = 'Voted'
@@ -65,8 +69,6 @@ class Person(models.Model):
 		)
 		email.send()
 		self.currentCondition = 'Email Sent'
-
-
 
 class totalNumberOfVotes(models.Model):
 	number = models.IntegerField(default=0)

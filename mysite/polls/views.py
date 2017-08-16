@@ -17,7 +17,7 @@ from django.utils import timezone
 class IndexView(generic.ListView):
 	def get(self,request):
             now = datetime.datetime.now()
-            electionEndDate = datetime.datetime(2016,7,31,16,0)
+            electionEndDate = datetime.datetime(2017,7,31,16,0)
             if now > electionEndDate:
                 return render(request, 'polls/results.html', {'text': "Sorry Time is up! Better luck next time!!"})
             a = request.GET.get('id')
